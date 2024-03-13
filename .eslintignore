@@ -1,0 +1,12 @@
+/build/
+/config/
+/dist/
+
+/test/unit/coverage/
+/node_modules/
+/dist*
+/src/main.ts
+/lib/
+/lib*
+/npmpackage/
+/npmpackage*
