@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="(loading as boolean)"
+  <div v-loading="loading as boolean"
        class="mentions-select-wrap">
     <div class="mentions-select-content">
       <div v-for="(item, index) in options"
@@ -33,7 +33,7 @@ import type { OptionProps } from './mentionsTypes'
 import { MentionsContextKey } from './mentionsTypes'
 import { isEmpty } from 'lodash-es'
 
-interface Options extends OptionProps, Record<string, any> { }
+interface Options extends OptionProps, Record<string, any> {}
 
 const props = defineProps({
   options: {
@@ -124,7 +124,7 @@ const handleOpenDialog = () => {
   }
 
   .user-text {
-    color: #1F2736;
+    color: #1f2736;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

@@ -3,8 +3,8 @@
 import { MentionsopenDialogValue } from './mentionsTypes'
 
 interface MeasureIndex {
-	location: number
-	prefix: string
+  location: number
+  prefix: string
 }
 
 export function getLastMeasureIndex (text: string, prefix: string | string[] = ''): MeasureIndex {
@@ -105,11 +105,11 @@ function reduceText (text: string, targetText: string, split: string) {
 }
 
 interface MeasureConfig {
-	measureLocation: number
-	prefix: string
-	targetText: string
-	selectionStart: number
-	split: string
+  measureLocation: number
+  prefix: string
+  targetText: string
+  selectionStart: number
+  split: string
 }
 
 export function replaceWithMeasure (text: string, measureConfig: MeasureConfig) {
@@ -123,7 +123,11 @@ export function replaceWithMeasure (text: string, measureConfig: MeasureConfig) 
     beforeMeasureText = `${beforeMeasureText}${split}`
   }
 
-  let restText = reduceText(text.slice(selectionStart), targetText.slice(selectionStart - measureLocation - prefix.length), split)
+  let restText = reduceText(
+    text.slice(selectionStart),
+    targetText.slice(selectionStart - measureLocation - prefix.length),
+    split
+  )
   if (restText.slice(0, split.length) === split) {
     restText = restText.slice(split.length)
   }
@@ -153,7 +157,7 @@ export const getOffsetText = () => {
   }
 }
 
-export function deleteContentAfterAtSign (range:any) {
+export function deleteContentAfterAtSign (range: any) {
   const startContainer = range.startContainer
   const startOffset = range.startOffset
   const textBeforeRange = startContainer.textContent.slice(0, startOffset)
@@ -192,7 +196,7 @@ export function insertSpace () {
   }
 }
 
-export function setSelectionStartByEle (start:any) {
+export function setSelectionStartByEle (start: any) {
   // 新光标
   const newRange = document.createRange()
   // newRange.setStartAfter(start)
@@ -205,7 +209,13 @@ export function setSelectionStartByEle (start:any) {
   insertSpace()
 }
 
-export function insertMention (range: Range, mentionText: string, value: string | undefined, split: string, mentionClass: string) {
+export function insertMention (
+  range: Range,
+  mentionText: string,
+  value: string | undefined,
+  split: string,
+  mentionClass: string
+) {
   const mentionNode = document.createElement('span')
   mentionNode.innerText = `@${mentionText}${split}`
   mentionNode.setAttribute('contenteditable', 'false')

@@ -150,7 +150,11 @@ onMounted(() => {
   // }
   const popperOptions = toRef(props, 'popperOptions')
   if (popperOptions.value) {
-    popperIns.value = createPopper(virtualElement as any, popper.value as HTMLDivElement, popperOptions.value)
+    popperIns.value = createPopper(
+      virtualElement as any,
+      popper.value as HTMLDivElement,
+      popperOptions.value
+    )
   } else {
     popperIns.value = createPopper(virtualElement as any, popper.value as HTMLDivElement, {
       placement: 'left-end',
