@@ -1,36 +1,39 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import RichMentions from './components/rich-mentions'
+const testOptions = [
+  {
+    label: '张三',
+    value: 'id-1'
+  },
+  {
+    label: '罗老师',
+    value: 'id-2'
+  },
+  {
+    label: '测试1',
+    value: 'id-3'
+  },
+  {
+    label: '测试3',
+    value: 'id-5',
+    disabled: true
+  }
+]
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo"
-         class="logo"
-         src="@/assets/logo.svg"
-         width="125"
-         height="125">
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-      <nav>
-        <RouterLink to="/">
-          Home
-        </RouterLink>
-        <RouterLink to="/about">
-          About
-        </RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div class="example">
+    <RichMentions :options="testOptions"
+                  :placeholder="'vue3 mentions test @ me'" />
+  </div>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+.example {
+  width: 300px;
+  height: 200px;
 }
 
 .logo {

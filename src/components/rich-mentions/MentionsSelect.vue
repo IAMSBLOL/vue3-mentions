@@ -1,27 +1,27 @@
 <template>
   <div v-loading="loading as boolean"
-       class="mentions-select-wrap">
-    <div class="mentions-select-content">
+       class="Vue3Mnetions__mentions-select-wrap">
+    <div class="Vue3Mnetions__mentions-select-content">
       <div v-for="(item, index) in options"
            :key="index"
            :class="[computedActiveCls(index)]"
            class="">
-        <div class="select-item"
+        <div class="Vue3Mnetions__select-item"
              @click="handleClick(item, index)">
-          <div class="user-avatar">
+          <div class="Vue3Mnetions__user-avatar">
             {{ (item.label as string)?.slice(0, 1)?.toUpperCase() }}
           </div>
-          <div class="user-text">
+          <div class="Vue3Mnetions__user-text">
             {{ item?.label }}
           </div>
         </div>
       </div>
       <div v-if="showNoData"
-           class="py-5 flex items-center justify-center text-[#858D99] text-sm">
+           class="Vue3Mnetions__no-more-wrap">
         暂无可选项
       </div>
     </div>
-    <div class="more-btn h-10 text-sm py-[12px] px-2"
+    <div class="Vue3Mnetions__more-btn"
          @click="handleOpenDialog()">
       查看更多
     </div>
@@ -33,7 +33,7 @@ import type { OptionProps } from './mentionsTypes'
 import { MentionsContextKey } from './mentionsTypes'
 import { isEmpty } from 'lodash-es'
 
-interface Options extends OptionProps, Record<string, any> {}
+interface Options extends OptionProps, Record<string, any> { }
 
 const props = defineProps({
   options: {
@@ -52,7 +52,7 @@ const { activeIndex, setActiveIndex, selectOption, handleCusClick, loading } = i
 
 const computedActiveCls = computed(() => (index: number) => {
   if (index === activeIndex.value) {
-    return 'select-item-active'
+    return 'Vue3Mnetions__select-item-active'
   }
   return ''
 })
@@ -81,7 +81,7 @@ const handleOpenDialog = () => {
 </script>
 
 <style lang="scss" scoped>
-.mentions-select-wrap {
+.Vue3Mnetions__mentions-select-wrap {
   width: 200px;
   background-color: #fff;
   overflow: hidden;
@@ -89,11 +89,11 @@ const handleOpenDialog = () => {
   border-radius: 8px;
   z-index: 100;
 
-  .mentions-select-content {
+  .Vue3Mnetions__mentions-select-content {
     padding: 0.75rem 0.5rem;
   }
 
-  .select-item {
+  .Vue3Mnetions__select-item {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -104,26 +104,30 @@ const handleOpenDialog = () => {
     z-index: 100;
   }
 
-  .select-item-active {
+  .Vue3Mnetions__select-item-active {
     background-color: #f0f2f5;
   }
 
-  .more-btn {
+  .Vue3Mnetions__more-btn {
     display: flex;
     justify-content: center;
     align-items: center;
     color: #377bff;
     border-top: 1px solid #cbd1db;
     cursor: pointer;
+    height: 2.5rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    padding: 0.75rem 0.5rem;
   }
 
-  .user-avatar {
+  .Vue3Mnetions__user-avatar {
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .user-text {
+  .Vue3Mnetions__user-text {
     color: #1f2736;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -132,6 +136,17 @@ const handleOpenDialog = () => {
     padding-left: 0.25rem;
     font-size: 0.75rem;
     line-height: 1rem;
+  }
+
+  .Vue3Mnetions__no-more-wrap {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    color: #858D99;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }
 </style>

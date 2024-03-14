@@ -1,7 +1,7 @@
 <template>
-  <div class="rich-mentions-editor-wrap">
+  <div class="Vue3Mnetions__rich-mentions-editor-wrap">
     <div ref="divEditor"
-         class="rich-mentions-editor"
+         class="Vue3Mnetions__rich-mentions-editor"
          :contenteditable="true"
          :data-placeholder="placeholder"
          @input="handleInput"
@@ -15,7 +15,7 @@
   </div>
 
   <div ref="popper"
-       class="popper-wrap">
+       class="Vue3Mnetions__popper-wrap">
     <div v-if="state.measuring">
       <MentionsSelect :options="options" />
     </div>
@@ -42,11 +42,29 @@ import { type OptionProps, MentionsContextKey } from './mentionsTypes'
 import MentionsSelect from './MentionsSelect.vue'
 import { ref, type PropType, shallowRef, reactive, onMounted, computed, provide, toRef } from 'vue'
 
+export type Vue3MentionsProps = {
+  value: string
+  prefix: string
+  mentionsColor:string
+  mentionClass: string
+  placeholder: string
+  split: string
+  filterOption: typeof defaultFilterOption | false
+  loading: boolean
+  options: OptionProps[]
+  popperOptions: Record<string, any>
+}
+
 const props = defineProps({
   value: {
     type: String,
     default: ''
   },
+  mentionsColor: {
+    type: String,
+    default: 'red'
+  },
+
   prefix: {
     type: String,
     default: '@'
@@ -213,7 +231,7 @@ const selectOption = (option: OptionProps | OptionProps[]) => {
       // fuck
       const range = selecttion.getRangeAt(0)
       const { label: mentionValue = '', value } = arr[i]
-      insertMention(range, mentionValue, value, props.split, props.mentionClass)
+      insertMention(range, mentionValue, value, props.split, props.mentionClass, props.mentionsColor)
     }
 
     triggerChange(divEditor.value.innerHTML)
@@ -445,11 +463,11 @@ defineExpose({
 </script>
 
 <style lang="scss" scoped>
-.rich-mentions-editor-wrap {
+.Vue3Mnetions__rich-mentions-editor-wrap {
   width: 100%;
 }
 
-.rich-mentions-editor {
+.Vue3Mnetions__rich-mentions-editor {
   width: 100%;
   resize: none;
   border: none;
@@ -473,7 +491,7 @@ defineExpose({
   color: #b4b8bf;
 }
 
-.popper-wrap {
+.Vue3Mnetions__popper-wrap {
   z-index: 99;
 }
 </style>

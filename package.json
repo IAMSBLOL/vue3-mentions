@@ -13,7 +13,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "prepare": "husky install",
-    "lib": "vite build --mode lib"
+    "lib": "vite build --mode lib",
+    "publish": " node ./publish.cjs"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
@@ -46,9 +47,12 @@
     "npm-run-all2": "^6.1.2",
     "prettier": "^3.0.3",
     "sass": "^1.71.1",
+    "shelljs": "^0.8.5",
     "typescript": "^5.4.2",
     "vite": "^5.1.5",
-    "vite-plugin-dts": "^3.7.3",
+    "vite-bundle-analyzer": "^0.8.3",
+    "vite-plugin-compression2": "^1.0.0",
+    "vite-plugin-dts": "^3.6.1",
     "vite-plugin-optimize-css-modules": "^1.0.6",
     "vite-plugin-vue-devtools": "^7.0.16",
     "vitest": "^1.3.1",

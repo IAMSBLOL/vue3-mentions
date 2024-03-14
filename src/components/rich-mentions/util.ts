@@ -164,13 +164,13 @@ export function deleteContentAfterAtSign (range: any) {
   const atIndex = textBeforeRange.lastIndexOf('@')
 
   if (atIndex !== -1) {
-    const textToDelete = textBeforeRange.slice(atIndex)
-    const deletedLength = textToDelete.length
+    // const textToDelete = textBeforeRange.slice(atIndex)
+    // const deletedLength = textToDelete.length
     range.setStart(startContainer, atIndex)
     range.deleteContents()
-    console.log('已删除字符数:', deletedLength)
+    // console.log('已删除字符数:', deletedLength)
   } else {
-    console.log('找不到 @ 符号')
+    // console.log('找不到 @ 符号')
   }
 }
 
@@ -214,7 +214,8 @@ export function insertMention (
   mentionText: string,
   value: string | undefined,
   split: string,
-  mentionClass: string
+  mentionClass: string,
+  mentionsColor: string
 ) {
   const mentionNode = document.createElement('span')
   mentionNode.innerText = `@${mentionText}${split}`
@@ -222,7 +223,7 @@ export function insertMention (
   mentionNode.setAttribute('class', mentionClass)
   mentionNode.setAttribute('data-id', value as string)
   mentionNode.setAttribute('data-name', mentionText as any)
-  mentionNode.style.color = 'var(--el-color-primary)'
+  mentionNode.style.color = mentionsColor || 'var(--el-color-primary)'
 
   range.insertNode(mentionNode)
 

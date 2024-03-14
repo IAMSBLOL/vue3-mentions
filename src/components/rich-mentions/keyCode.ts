@@ -1,7 +1,7 @@
 /**
  * @ignore
  * some key-codes definition and utils from closure-library
- * @author yiminghe@gmail.com
+ *
  */
 
 const KeyCode = {
