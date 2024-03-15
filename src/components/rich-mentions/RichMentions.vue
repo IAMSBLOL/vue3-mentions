@@ -42,19 +42,6 @@ import { type OptionProps, MentionsContextKey } from './mentionsTypes'
 import MentionsSelect from './MentionsSelect.vue'
 import { ref, type PropType, shallowRef, reactive, onMounted, computed, provide, toRef } from 'vue'
 
-export type Vue3MentionsProps = {
-  value: string
-  prefix: string
-  mentionsColor:string
-  mentionClass: string
-  placeholder: string
-  split: string
-  filterOption: typeof defaultFilterOption | false
-  loading: boolean
-  options: OptionProps[]
-  popperOptions: Record<string, any>
-}
-
 const props = defineProps({
   value: {
     type: String,
@@ -175,7 +162,7 @@ onMounted(() => {
     )
   } else {
     popperIns.value = createPopper(virtualElement as any, popper.value as HTMLDivElement, {
-      placement: 'left-end',
+      placement: 'auto',
       strategy: 'fixed'
     })
   }
@@ -465,6 +452,11 @@ defineExpose({
 <style lang="scss" scoped>
 .Vue3Mnetions__rich-mentions-editor-wrap {
   width: 100%;
+  min-width: 12rem;
+  min-height: 2rem;
+  border-radius: 0.3rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem;
 }
 
 .Vue3Mnetions__rich-mentions-editor {

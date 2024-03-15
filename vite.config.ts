@@ -7,6 +7,7 @@ import dts from 'vite-plugin-dts'
 import { resolve } from 'node:path'
 import basicSsl from '@vitejs/plugin-basic-ssl'
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules'
+import svgLoader from 'vite-svg-loader'
 // import { analyzer } from 'vite-bundle-analyzer'
 // import { compression } from 'vite-plugin-compression2'
 // https://vitejs.dev/config/
@@ -16,7 +17,7 @@ export default defineConfig((configEnv:any) => {
   // process.env.mode = mode
   // console.log(VITE_TYPE)
   process.env.mode = mode
-  // const isDev = mode === 'development'
+  const isDev = mode === 'development'
   const isPro = mode === 'production'
   const isLib = mode === 'lib'
 
@@ -27,7 +28,9 @@ export default defineConfig((configEnv:any) => {
         vueJsx(),
         splitVendorChunkPlugin(),
         dts({
-
+          tsconfigPath: 'tsconfig.lib.json',
+          outDir: 'lib/dist/types'
+          // copyDtsFiles: true
         }),
         optimizeCssModules()
         // compression()
@@ -65,7 +68,8 @@ export default defineConfig((configEnv:any) => {
     plugins: [
       vue(),
       vueJsx(),
-      VueDevTools(),
+      svgLoader(),
+      isDev && VueDevTools(),
       basicSsl(),
       isPro && splitVendorChunkPlugin(),
       isPro && optimizeCssModules()

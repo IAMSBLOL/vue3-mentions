@@ -1,6 +1,13 @@
 <script setup lang="ts">
 
 import RichMentions from './components/rich-mentions'
+
+import ExampleContainer from './views/ExampleContainer'
+
+import ExampleHeader from './views/ExampleHeader'
+
+import ExampleHero from './views/ExampleHero'
+
 const testOptions = [
   {
     label: '张三',
@@ -23,72 +30,30 @@ const testOptions = [
 </script>
 
 <template>
-  <div class="example">
-    <RichMentions :options="testOptions"
-                  :placeholder="'vue3 mentions test @ me'" />
+  <ExampleHeader />
+  <ExampleHero />
+  <div class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-3 py-2 px-16">
+    <ExampleContainer :title="'简单模式'">
+      <template #content>
+        <RichMentions :options="testOptions"
+                      :placeholder="'请输入'" />
+      </template>
+    </ExampleContainer>
+    <ExampleContainer :title="'自定义选择样式'">
+      <template #content>
+        <RichMentions :options="testOptions"
+                      :placeholder="'请输入'" />
+      </template>
+    </ExampleContainer>
+    <ExampleContainer :title="'禁止使用'">
+      <template #content>
+        <RichMentions :options="testOptions"
+                      :placeholder="'请输入'" />
+      </template>
+    </ExampleContainer>
   </div>
 </template>
 
 <style scoped>
-.example {
-  width: 300px;
-  height: 200px;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
